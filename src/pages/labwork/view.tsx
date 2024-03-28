@@ -27,16 +27,16 @@ function FormExample() {
         <Col sm={8}>
           <h3>Laboratory Work</h3>
           <Tabs defaultActiveKey="description" className="mb-3">
-            <Tab eventKey="description" title="Description">
-              Tab content for Description
+            <Tab eventKey="description" title="Описание">
+              Tab content for Описание
             </Tab>
-            <Tab eventKey="desources" title="Resources">
-              Tab content for Resources
+            <Tab eventKey="resources" title="Материалы">
+              Tab content for Материалы
             </Tab>
           </Tabs>
         </Col>
         <Col sm={4}>
-          <h4>Members</h4>
+          <h4>Участники</h4>
           <ul>
             <li>ali210599@gmail.com</li>
             <li>ali210599@gmail.com</li>

@@ -11,20 +11,26 @@ function TheHeader() {
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand as={Link} href="/">
-          Lab Gid
+          Лаб Гид
         </Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link as={Link} href="/approval">
-            Approvals
-          </Nav.Link>
+          <NavDropdown title="Лабораторные работы">
+            <NavDropdown.Item as={Link} href="/labwork/list">
+              Список
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item as={Link} href="/labwork/create">
+              Создать
+            </NavDropdown.Item>
+          </NavDropdown>
         </Nav>
 
         <Form className="d-flex">
           <Nav className="me-auto">
-            <Nav.Link as={Link} href="/sign-in">
+            <Nav.Link as={Link} href="/auth/sign-in">
               Sign In
             </Nav.Link>
-            <Nav.Link as={Link} href="/sign-up">
+            <Nav.Link as={Link} href="/auth/sign-up">
               Sign Up
             </Nav.Link>
           </Nav>
