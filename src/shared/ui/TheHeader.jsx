@@ -5,9 +5,13 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { AppContext } from "@/store/appContext";
 
 function TheHeader() {
+  const { user } = useContext(AppContext);
+  const isProfessor = user?.role === "professor";
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -20,20 +24,32 @@ function TheHeader() {
               Список
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item as={Link} href="/labwork/create">
-              Создать
-            </NavDropdown.Item>
+
+            {isProfessor && (
+              <NavDropdown.Item as={Link} href="/labwork/create">
+                Создать
+              </NavDropdown.Item>
+            )}
           </NavDropdown>
         </Nav>
 
         <Form className="d-flex">
           <Nav className="me-auto">
-            <Nav.Link as={Link} href="/auth/sign-in">
-              Sign In
-            </Nav.Link>
-            <Nav.Link as={Link} href="/auth/sign-up">
-              Sign Up
-            </Nav.Link>
+            {!user && (
+              <>
+                <Nav.Link as={Link} href="/auth/sign-in">
+                  Войти
+                </Nav.Link>
+                <Nav.Link as={Link} href="/auth/sign-up">
+                  Зарегистрироваться
+                </Nav.Link>
+              </>
+            )}
+            {user && (
+              <Nav.Link as={Link} href="/auth/sign-up">
+                Выйти
+              </Nav.Link>
+            )}
           </Nav>
         </Form>
       </Container>

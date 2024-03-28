@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -11,8 +11,10 @@ import Row from "react-bootstrap/Row";
 import { Container } from "react-bootstrap";
 import TheHeader from "@/shared/ui/TheHeader";
 import DefaultLayout from "@/shared/ui/DefaultLayout";
+import { useRouter } from "next/router";
 
 export default function SignIn() {
+  const router = useRouter();
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
@@ -26,8 +28,23 @@ export default function SignIn() {
       return;
     }
 
+    const email = form.email.value;
+    const password = form.password.value;
 
-    // setValidated(true);
+    fetch("/api/signin", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        window.location.href = "/labwork/list";
+      });
   };
 
   return (

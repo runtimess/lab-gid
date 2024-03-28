@@ -12,7 +12,17 @@ import { Container } from "react-bootstrap";
 import TheHeader from "@/shared/ui/TheHeader";
 import DefaultLayout from "@/shared/ui/DefaultLayout";
 
-export default function SignIn() {
+SignInPage.getInitialProps = async () => {
+  const students = await fetch("http://localhost:3000/api/students").then(
+    (res) => res.json()
+  );
+
+  return {
+    students,
+  };
+};
+
+export default function SignInPage({ students }) {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
@@ -62,10 +72,9 @@ export default function SignIn() {
               <option value="" disabled selected>
                 Выберите участников
               </option>
-              <option value="1">ali210599@gmail.com</option>
-              <option value="1">ali210599@gmail.com</option>
-              <option value="1">ali210599@gmail.com</option>
-              <option value="1">ali210599@gmail.com</option>
+              {students.map(student => (
+                <option value={student.id} key={student.id}>{student.email}</option>
+              ))}
             </Form.Select>
             <Form.Control.Feedback type="invalid">
               Invalid Role

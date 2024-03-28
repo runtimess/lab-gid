@@ -8,7 +8,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import DefaultLayout from "@/shared/ui/DefaultLayout";
 
-function FormExample() {
+export default function LabWorkListPage({ name }) {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
@@ -25,7 +25,7 @@ function FormExample() {
   return (
     <DefaultLayout>
       <h1>Лабораторные работы</h1>
-
+      {name}
       <div
         style={{
           display: "flex",
@@ -84,4 +84,10 @@ function FormExample() {
   );
 }
 
-export default FormExample;
+export const getServerSideProps = async () => {
+  return {
+    props: {
+      name: "test",
+    },
+  };
+};
