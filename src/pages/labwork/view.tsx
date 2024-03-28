@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { type FormEvent, useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
@@ -33,14 +34,42 @@ function FormExample() {
             <Tab eventKey="resources" title="Материалы">
               Tab content for Материалы
             </Tab>
+            <Tab eventKey="solution" title="Отправка ответа">
+              <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                <Form.Group controlId="formFileMultiple" className="mb-3">
+                  <Form.Label>Материалы</Form.Label>
+                  <Form.Control type="file" multiple required />
+                  <Form.Control.Feedback type="invalid">
+                    Invalid Материалы
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="description">
+                  <Form.Label>Комментарий</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    placeholder="Введите комментарий"
+                    rows={10}
+                  />
+                </Form.Group>
+                <Button className="w-100" type="submit">
+                  Опубликовать
+                </Button>
+              </Form>
+            </Tab>
           </Tabs>
         </Col>
         <Col sm={4}>
           <h4>Участники</h4>
           <ul>
-            <li>ali210599@gmail.com</li>
-            <li>ali210599@gmail.com</li>
-            <li>ali210599@gmail.com</li>
+            <li>
+              <Link href="/labwork/approve?id=1">ali210599@gmail.com (Вы)</Link>
+            </li>
+            <li>
+              <Link href="/labwork/approve?id=1">ali210599@gmail.com</Link>
+            </li>
+            <li>
+              <Link href="/labwork/approve?id=1">ali210599@gmail.com</Link>
+            </li>
           </ul>
         </Col>
       </Row>
