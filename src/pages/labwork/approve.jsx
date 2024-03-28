@@ -7,7 +7,17 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import DefaultLayout from "@/shared/ui/DefaultLayout";
 
-function FormExample() {
+LabWorkApprovePage.getInitialProps = async (ctx) => {
+  const user = await fetch(
+    `http://localhost:3000/api/labwork/approve?id=${2}`
+  ).then((res) => res.json());
+
+  return {
+    user,
+  };
+};
+
+export default function LabWorkApprovePage({ user }) {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
@@ -25,7 +35,9 @@ function FormExample() {
     <DefaultLayout>
       <Row>
         <Col sm={8}>
-          <h3>Ответ студента: ali210599@gmail.com</h3>
+          <h3>
+            Ответ студента: <span title={user.email}>{`${user.firstName} ${user.lastName}`}</span>
+          </h3>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group controlId="formFileMultiple" className="mb-3">
               <Form.Label>Материалы</Form.Label>
@@ -43,8 +55,8 @@ function FormExample() {
             </Form.Group>
             <Form.Group className="mb-3" controlId="role">
               <Form.Label>Оценка</Form.Label>
-              <Form.Select aria-label="Default select example" required>
-                <option value="" disabled selected>
+              <Form.Select defaultValue={""} required>
+                <option value="" disabled>
                   Выберите оценку
                 </option>
                 <option value="1">1</option>
@@ -71,5 +83,3 @@ function FormExample() {
     </DefaultLayout>
   );
 }
-
-export default FormExample;

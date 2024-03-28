@@ -7,8 +7,19 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import DefaultLayout from "@/shared/ui/DefaultLayout";
+import { labworks } from "@/db";
 
-export default function LabWorkListPage({ name }) {
+LabWorkListPage.getInitialProps = async () => {
+  const labworkList = await fetch(
+    "http://localhost:3000/api/labwork/list"
+  ).then((res) => res.json());
+
+  return {
+    labworkList,
+  };
+};
+
+export default function LabWorkListPage({ labworkList }) {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
@@ -25,7 +36,6 @@ export default function LabWorkListPage({ name }) {
   return (
     <DefaultLayout>
       <h1>Лабораторные работы</h1>
-      {name}
       <div
         style={{
           display: "flex",
@@ -33,61 +43,33 @@ export default function LabWorkListPage({ name }) {
           gap: "16px",
         }}
       >
-        <Card>
-          <Card.Header>
-            <Row className="justify-content-between">
-              <h5 className="m-0">Лабораторная работа #1</h5>
-              <div>21.06.2024</div>
-            </Row>
-          </Card.Header>
-          <Card.Body>
-            <Card.Text>
-              With supporting text below as a natural lead-in to additional
-              content.
-            </Card.Text>
-            <div
-              style={{
-                textAlign: "right",
-              }}
-            >
-              <Button as={Link} variant="primary" href={`/labwork/view/?id=1`}>
-                Просмотр
-              </Button>
-            </div>
-          </Card.Body>
-        </Card>
-        <Card>
-          <Card.Header>
-            <Row className="justify-content-between">
-              <h5 className="m-0">Лабораторная работа #1</h5>
-              <div>21.06.2024</div>
-            </Row>
-          </Card.Header>
-          <Card.Body>
-            <Card.Text>
-              With supporting text below as a natural lead-in to additional
-              content.
-            </Card.Text>
-            <div
-              style={{
-                textAlign: "right",
-              }}
-            >
-              <Button as={Link} variant="primary" href={`/labwork/view/?id=1`}>
-                Просмотр
-              </Button>
-            </div>
-          </Card.Body>
-        </Card>
+        {labworkList.map((labwork) => (
+          <Card key={labwork.id}>
+            <Card.Header>
+              <Row className="justify-content-between">
+                <h5 className="m-0">{labwork.title}</h5>
+                <div>21.06.2024</div>
+              </Row>
+            </Card.Header>
+            <Card.Body>
+              <Card.Text>{labwork.description}</Card.Text>
+              <div
+                style={{
+                  textAlign: "right",
+                }}
+              >
+                <Button
+                  as={Link}
+                  variant="primary"
+                  href={`/labwork/view/?id=${labwork.id}`}
+                >
+                  Просмотр
+                </Button>
+              </div>
+            </Card.Body>
+          </Card>
+        ))}
       </div>
     </DefaultLayout>
   );
 }
-
-export const getServerSideProps = async () => {
-  return {
-    props: {
-      name: "test",
-    },
-  };
-};

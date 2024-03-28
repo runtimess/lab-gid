@@ -43,7 +43,7 @@ export default function SignIn() {
     })
       .then((res) => res.json())
       .then((data) => {
-        window.location.href = "/labwork/list";
+        window.location.href = "/";
       });
   };
 

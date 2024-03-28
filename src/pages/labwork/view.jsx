@@ -8,7 +8,17 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import DefaultLayout from "@/shared/ui/DefaultLayout";
 
-function FormExample() {
+LabWorkViewPage.getInitialProps = async (ctx) => {
+  const labwork = await fetch(
+    `http://localhost:3000/api/labwork/view?id=${1}`
+  ).then((res) => res.json());
+
+  return {
+    labwork,
+  };
+};
+
+export default function LabWorkViewPage({ labwork }) {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
@@ -26,10 +36,10 @@ function FormExample() {
     <DefaultLayout>
       <Row>
         <Col sm={8}>
-          <h3>Laboratory Work</h3>
+          <h3>{labwork.title}</h3>
           <Tabs defaultActiveKey="description" className="mb-3">
             <Tab eventKey="description" title="Описание">
-              Tab content for Описание
+              {labwork.description}
             </Tab>
             <Tab eventKey="resources" title="Материалы">
               Tab content for Материалы
@@ -61,20 +71,16 @@ function FormExample() {
         <Col sm={4}>
           <h4>Участники</h4>
           <ul>
-            <li>
-              <Link href="/labwork/approve?id=1">ali210599@gmail.com (Вы)</Link>
-            </li>
-            <li>
-              <Link href="/labwork/approve?id=1">ali210599@gmail.com</Link>
-            </li>
-            <li>
-              <Link href="/labwork/approve?id=1">ali210599@gmail.com</Link>
-            </li>
+            {labwork.students.map((student) => (
+              <li key={student.id}>
+                <Link href={`/labwork/approve?id=${student.id}`}>
+                  {`${student.firstName} ${student.lastName}`} (Вы)
+                </Link>
+              </li>
+            ))}
           </ul>
         </Col>
       </Row>
     </DefaultLayout>
   );
 }
-
-export default FormExample;

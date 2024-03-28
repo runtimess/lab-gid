@@ -12,7 +12,7 @@ import { Container } from "react-bootstrap";
 import TheHeader from "@/shared/ui/TheHeader";
 import DefaultLayout from "@/shared/ui/DefaultLayout";
 
-SignInPage.getInitialProps = async () => {
+CreateLabWorkPage.getInitialProps = async () => {
   const students = await fetch("http://localhost:3000/api/students").then(
     (res) => res.json()
   );
@@ -22,7 +22,7 @@ SignInPage.getInitialProps = async () => {
   };
 };
 
-export default function SignInPage({ students }) {
+export default function CreateLabWorkPage({ students }) {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {

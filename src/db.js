@@ -16,3 +16,13 @@ export const users = [
         password: '12341234'
     }
 ]
+
+export const labworks = [
+    {
+        id: 1,
+        professorId: 1,
+        title: 'Lab work 1',
+        description: 'little desc',
+        students: [2]
+    }
+]
