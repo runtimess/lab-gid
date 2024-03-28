@@ -23,12 +23,15 @@ function TheHeader() {
             <NavDropdown.Item as={Link} href="/labwork/list">
               Список
             </NavDropdown.Item>
-            <NavDropdown.Divider />
 
             {isProfessor && (
-              <NavDropdown.Item as={Link} href="/labwork/create">
-                Создать
-              </NavDropdown.Item>
+              <>
+                <NavDropdown.Divider />
+
+                <NavDropdown.Item as={Link} href="/labwork/create">
+                  Создать
+                </NavDropdown.Item>
+              </>
             )}
           </NavDropdown>
         </Nav>

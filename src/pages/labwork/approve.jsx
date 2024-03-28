@@ -42,7 +42,8 @@ export default function LabWorkApprovePage({ user }) {
             <Form.Group controlId="formFileMultiple" className="mb-3">
               <Form.Label>Материалы</Form.Label>
               <ul>
-                <li>sol.pdf</li>
+                <li><a href="#">Модуль1.pdf</a></li>
+                <li><a href="#">Модуль2.pdf</a></li>
               </ul>
             </Form.Group>
             <Form.Group className="mb-3" controlId="description">
@@ -75,7 +76,7 @@ export default function LabWorkApprovePage({ user }) {
               </Form.Control.Feedback>
             </Form.Group>
             <Button className="w-100" type="submit">
-              Принять
+              Отправить
             </Button>
           </Form>
         </Col>

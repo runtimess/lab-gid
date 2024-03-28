@@ -35,7 +35,8 @@ export default function LabWorkListPage({ labworkList }) {
 
   return (
     <DefaultLayout>
-      <h1>Лабораторные работы</h1>
+      <h3>Лабораторные работы</h3>
+      <br />
       <div
         style={{
           display: "flex",
@@ -48,7 +49,6 @@ export default function LabWorkListPage({ labworkList }) {
             <Card.Header>
               <Row className="justify-content-between">
                 <h5 className="m-0">{labwork.title}</h5>
-                <div>21.06.2024</div>
               </Row>
             </Card.Header>
             <Card.Body>

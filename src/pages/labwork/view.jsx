@@ -37,6 +37,7 @@ export default function LabWorkViewPage({ labwork }) {
       <Row>
         <Col sm={8}>
           <h3>{labwork.title}</h3>
+          <br />
           <Tabs defaultActiveKey="description" className="mb-3">
             <Tab eventKey="description" title="Описание">
               {labwork.description}
@@ -62,7 +63,7 @@ export default function LabWorkViewPage({ labwork }) {
                   />
                 </Form.Group>
                 <Button className="w-100" type="submit">
-                  Опубликовать
+                  Отправить на проверку
                 </Button>
               </Form>
             </Tab>
@@ -70,11 +71,19 @@ export default function LabWorkViewPage({ labwork }) {
         </Col>
         <Col sm={4}>
           <h4>Участники</h4>
+          <h6>Преподаватель/Профессор: </h6>
           <ul>
-            {labwork.students.map((student) => (
+            <li>Alan Turing</li>
+          </ul>
+          <h6>Исполнители: </h6>
+          <ul>
+            {labwork.students.map((student, idx) => (
               <li key={student.id}>
                 <Link href={`/labwork/approve?id=${student.id}`}>
-                  {`${student.firstName} ${student.lastName}`} (Вы)
+                  {`${student.firstName} ${student.lastName}`}
+                  {[0, 1].includes(idx) && (
+                    ' (Ожидает оценки)'
+                  )}
                 </Link>
               </li>
             ))}

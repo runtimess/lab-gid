@@ -32,16 +32,16 @@ export default function SignUp() {
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="email">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" required />
+            <Form.Control type="email" placeholder="Введите Email" required />
             <Form.Control.Feedback type="invalid">
               Invalid Email
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="password">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Пароль</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Enter password"
+              placeholder="Введите пароль"
               required
             />
             <Form.Control.Feedback type="invalid">
@@ -49,10 +49,10 @@ export default function SignUp() {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="password">
-            <Form.Label>Confirmation Password</Form.Label>
+            <Form.Label>Повторный пароль</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Enter confirmation password"
+              placeholder="Введите повторный пароль"
               required
             />
             <Form.Control.Feedback type="invalid">
@@ -60,20 +60,20 @@ export default function SignUp() {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="role">
-            <Form.Label>Role</Form.Label>
+            <Form.Label>Роль</Form.Label>
             <Form.Select aria-label="Default select example" required>
               <option value="" disabled selected>
-                Select a role
+                Выберите роль
               </option>
-              <option value="1">Professor</option>
-              <option value="1">Student</option>
+              <option value="1">Преподаватель/Профессор</option>
+              <option value="1">Студент</option>
             </Form.Select>
             <Form.Control.Feedback type="invalid">
               Invalid Role
             </Form.Control.Feedback>
           </Form.Group>
           <Button className="w-100" type="submit">
-            Sign Up
+            Зарегистрироваться в системе
           </Button>
         </Form>
       </DefaultLayout>

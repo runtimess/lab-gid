@@ -53,16 +53,16 @@ export default function SignIn() {
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="email">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" required />
+            <Form.Control type="email" placeholder="Введите Email" required />
             <Form.Control.Feedback type="invalid">
               Invalid Email
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="password">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Пароль</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Enter password"
+              placeholder="Введите пароль"
               required
             />
             <Form.Control.Feedback type="invalid">
@@ -70,10 +70,10 @@ export default function SignIn() {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Remember me" />
+            <Form.Check type="checkbox" label="Запомнить" />
           </Form.Group>
           <Button className="w-100" type="submit">
-            Sign In
+            Войти в систему
           </Button>
         </Form>
       </DefaultLayout>
