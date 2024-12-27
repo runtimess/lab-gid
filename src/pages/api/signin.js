@@ -8,10 +8,10 @@ export default function handler(req, res) {
         const user = users.find(user => user.email === email && user.password === password)
 
         if (user) {
-            res.setHeader('Set-Cookie', `Auth=${user.id}; path=/; maxAge=60*60*24*7*10`)
+            // res.setHeader('Set-Cookie', `Auth=${user.id}; path=/; maxAge=60*60*24*7*10`)
 
             res.status(200).json({
-                id: user.id,
+                ...user
             });
             return
         }

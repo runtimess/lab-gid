@@ -43,6 +43,8 @@ export default function SignIn() {
     })
       .then((res) => res.json())
       .then((data) => {
+        document.cookie = `Auth=${1};path=/`;
+
         window.location.href = "/";
       });
   };

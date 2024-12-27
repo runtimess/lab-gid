@@ -4,6 +4,8 @@ import { users } from '@/db'
 export default function handler(req, res) {
     const id = Number(req.cookies['Auth'])
 
+    console.log(id, req.cookies)
+
     const user = users.find(user => user.id === id)
 
     if (user) {
